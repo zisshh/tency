@@ -1,0 +1,41 @@
+included:
+  - Tency
+  - TencyShared
+  - Tests
+
+excluded:
+  - build
+  - .build
+  - DerivedData
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - line_length          # handled by swift-format
+  - trailing_comma       # swift-format adds multiline trailing commas; defer to it
+
+opt_in_rules:
+  - empty_count
+  - closure_spacing
+  - first_where
+  - sorted_imports
+  - redundant_nil_coalescing
+
+type_body_length:
+  warning: 400
+  error: 600
+
+file_length:
+  warning: 600
+  error: 800
+
+function_body_length:
+  warning: 80
+  error: 140
+
+identifier_name:
+  min_length: 1
+  excluded: [id, r, g, b, a, x, y, dx, dy, lo, hi]
+
+nesting:
+  type_level: 3

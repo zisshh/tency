@@ -1,0 +1,102 @@
+name: Tency
+options:
+  bundleIdPrefix: com.divs
+  deploymentTarget:
+    iOS: "26.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+  groupSortPosition: top
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    GCC_WARN_INHIBIT_ALL_WARNINGS: NO
+
+targets:
+  Tency:
+    type: application
+    platform: iOS
+    sources:
+      - path: Tency
+      - path: TencyShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.divs.tency
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: YES
+        SWIFT_EMIT_LOC_STRINGS: YES
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: tency
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
+        INFOPLIST_KEY_UIUserInterfaceStyle: Automatic
+    entitlements:
+      path: Support/Tency.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.divs.tency
+    dependencies:
+      - target: TencyWidgetExtension
+
+  TencyWidgetExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: TencyWidget
+      - path: TencyShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.divs.tency.widget
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Support/TencyWidget-Info.plist
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_EMIT_LOC_STRINGS: YES
+    entitlements:
+      path: Support/TencyWidget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.divs.tency
+
+  TencyTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/TencyTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.divs.tency.tests
+    dependencies:
+      - target: Tency
+
+schemes:
+  Tency:
+    build:
+      targets:
+        Tency: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - TencyTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

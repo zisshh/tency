@@ -1,0 +1,29 @@
+# XcodeGen output (regenerate with `make gen`)
+*.xcodeproj
+*.xcworkspace
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.moved-aside
+*.hmap
+DerivedData/
+build/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Build products
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# macOS
+.DS_Store
+
+# Local exports / scratch
+*.local.json
+
+# OMC agent scratch
+.omc/
